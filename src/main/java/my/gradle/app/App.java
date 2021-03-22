@@ -1,5 +1,11 @@
 package my.gradle.app;
 
+/**
+ * 
+ * @author Vaman Deshmukh
+ *
+ */
+
 public class App {
 
 	public String hi() {
