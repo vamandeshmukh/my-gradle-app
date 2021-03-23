@@ -7,4 +7,13 @@ public class Calc {
 		return i + j;
 	}
 
+	public String m1() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return "m1";
+	}
+
 }
