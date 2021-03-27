@@ -1,13 +1,15 @@
 package my.gradle.app;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 /**
  * 
  * @author Vaman Deshmukh
  *
  */
-
-import org.hibernate.*;
-import org.hibernate.cfg.Configuration;
 
 public class App {
 	public static void main(String[] args) {
@@ -16,21 +18,28 @@ public class App {
 			Configuration config = new Configuration();
 			SessionFactory factory = config.configure().buildSessionFactory();
 			Session session = factory.openSession();
+			// transaction - insert or update or delete
 			Transaction transaction = session.beginTransaction();
-			Employee emp = new Employee("Sonu", 10.5);
-			session.save(emp); // insert
+//			Employee emp = new Employee("Ccc", 10.5);
+//			session.save(emp); // insert
+//			Employee emp2 = new Employee("Aaa", 10.5);
+//			session.save(emp2); // insert
+//			Employee emp3 = new Employee("Bbb", 10.5);
+//			session.save(emp3); // insert
 			transaction.commit();
 			Employee e1;
 			e1 = session.get(Employee.class, 101); // select
 			System.out.println(e1.toString());
-			session.evict(e1);
+//			session.evict(e1);
 			e1.setName("Monu");
-			session.update(e1); // update
+			session.save(e1);
+//			session.saveOrUpdate(e1); // update - save()
 			e1 = session.get(Employee.class, 101);
 			System.out.println(e1.toString());
-			session.delete(e1); // delete
+//			session.delete(e1); // delete
 			e1 = session.get(Employee.class, 101);
 			System.out.println(e1.toString());
+			transaction.commit();
 			session.close();
 			factory.close();
 		} catch (Exception ex) {
